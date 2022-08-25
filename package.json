@@ -8,7 +8,7 @@
     "dev": "nodemon server.js",
     "test": "jest -i",
     "install": "cd client && npm install",
-    "build": "cd client && react-app-rewired build",
+    "build": "cd client && npm run-script build",
     "heroku-postbuild": "npm run build"
   },
   "jest": {
@@ -36,6 +36,7 @@
     "supertest": "^6.2.3"
   },
   "engines": {
-    "node": "14.x"
+    "node": "14.x",
+    "npm": "6.x"
   }
 }
