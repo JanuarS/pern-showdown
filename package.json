@@ -9,7 +9,6 @@
     "test": "jest -i",
     "install": "cd client && npm install",
     "build": "cd client && npm run-script build"
-    // "heroku-postbuild": "npm run build"
   },
   "jest": {
     "testPathIgnorePatterns": [
