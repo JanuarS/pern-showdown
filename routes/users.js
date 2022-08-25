@@ -44,9 +44,9 @@ router.post("/", ensureAdmin, async function (req, res, next) {
  * 
  * Returns list of all users.
  * 
- * Authorization required: admin
+ * Authorization required: non
 */
-router.get("/", ensureAdmin, async function (req, res, next) {
+router.get("/", async function (req, res, next) {
   try {
     const users = await User.findAll();
     
