@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-app-reqired run build",
+    "build": "react-app-rewired run build",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject"
   },
