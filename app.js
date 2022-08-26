@@ -14,7 +14,7 @@ const usersRoutes = require("./routes/users");
 
 const morgan = require("morgan");
 
-// const stripe = require("./stripeApi");
+const stripe = require("./stripeApi");
 const app = express();
 
 // const stripe = require('stripe')('sk_test_51LafUjBMGCeUikoeiu3ejcQU1v3adPBMehfVC9Z6jquU6U4Hxowzkykkw8spn72R9rlriRrrzrXZxegRWKJg5COG003uQZc4cJ');
@@ -25,7 +25,7 @@ const app = express();
 //   .then(customer => console.log(customer.id))
 //   .catch(error => console.error(error));
 
-// stripe.createCustomer("example@customer.com");
+stripe.createCustomer("example@customer.com");
 app.use(cors());
 app.use(express.json());
 app.use(morgan("tiny"));
@@ -33,7 +33,7 @@ app.use(authenticateJWT);
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("frontend/build"));
+  app.use(express.static("client/build"));
 }
 
 app.use("/auth", authRoutes);
