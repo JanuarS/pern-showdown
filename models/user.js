@@ -126,6 +126,7 @@ class User {
               email,
               gender,
               school_handle AS "school",
+              is_admin AS "isAdmin",
               paid
        FROM users
        WHERE username = $1`, [username]);

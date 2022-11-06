@@ -23,6 +23,11 @@
       "minLength": 1,
       "maxLength": 30
     },
+    "gender": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 30
+    },
     "email": {
       "type": "string",
       "minLength": 6,
@@ -30,6 +35,9 @@
       "format": "email"
     },
     "isAdmin": {
+      "type": "boolean"
+    },
+    "paid": {
       "type": "boolean"
     }
   },
@@ -39,6 +47,7 @@
     "firstName",
     "lastName",
     "password",
-    "email"
+    "email",
+    "gender"
   ]
 }
