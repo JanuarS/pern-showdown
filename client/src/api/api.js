@@ -56,6 +56,25 @@ class ShowdownApi {
     let res = await this.request("schools", { handle });
     return res.schools;
   }
+
+  /** Get details of a school by school_handle */
+  static async getSchool(handle) {
+    let res = await this.request(`schools/${handle}`);
+    return res.school;
+  }
+
+  /** Add new school to schools database */
+  static async newSchool(data) {
+    let res = await this.request(`schools`, data, "post");
+    return res.school;
+  }
+
+  /** Add new user */
+  static async addUser(data) {
+    let res = await this.request(`auth/signup`, data, "post");
+    return res.user;
+  }
+
 }
 
 

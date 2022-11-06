@@ -16,11 +16,13 @@ function SchoolCard({ school_handle, school_name, city, state, logoUrl, facebook
   return (
     <div className="col-sm-4 pb-3">
       <div className="card">
-        <img src="/logos/logo2.png" class="card-img-top" alt={school_name} />
+        <img src="/logos/logo2.png" className="card-img-top" alt={school_name} />
         <div className="card-body">
           <h6 className="card-title">{school_name}</h6>
           <p className="card-text"><small>{city}</small></p>
-          <a href="#" className="btn btn-primary">Go somewhere</a>
+          {/* <a href="/companies/" className="btn btn-primary">Go somewhere</a> */}
+          <Link className="SchoolCard btn btn-primary" to={`/schools/${school_handle}`}>
+            <h4>Go Somewhere</h4></Link> 
         </div>
       </div>
     </div>

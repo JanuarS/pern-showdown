@@ -20,8 +20,7 @@
       "type": "string"
     },
     "logoUrl": {
-      "type": "string",
-      "format": "uri"
+      "type": "string"
     },
     "facebook_url": {
       "type": "string",

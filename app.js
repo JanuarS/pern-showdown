@@ -39,7 +39,13 @@ if (process.env.NODE_ENV === "production") {
 app.use("/auth", authRoutes);
 app.use("/schools", schoolsRoutes);
 app.use("/users", usersRoutes);
-app.use("/", usersRoutes);
+// app.use("/", usersRoutes);
+
+// Send every other request to the React app
+// Define any API routes before this runs
+// app.get("/", (req, res) => {
+//   res.sendFile(path.join(__dirname, "./client/build/index.html"));
+// });
 
 
 /** Handle 404 errors -- this matches everything */

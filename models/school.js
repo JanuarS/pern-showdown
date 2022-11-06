@@ -1,6 +1,7 @@
 "use strict";
 
 const db = require("../db");
+const { BadRequestError, NotFoundError } = require("../expressError");
 
 /** Related functions for schools. */
 
@@ -24,7 +25,7 @@ class School {
     );
 
     if (duplicateCheck.rows[0]) {
-      throw BadRequestError(`Duplicate school: ${school_handle}`);
+      throw new BadRequestError(`Duplicate school: ${school_handle}`);
     }
 
     const res = await db.query(
@@ -58,7 +59,8 @@ class School {
                         logo_url AS "logoUrl",
                         facebook_url AS "facebookUrl",
                         instagram_url AS "instagramUrl"
-                 FROM schools`;
+                 FROM schools
+                 ORDER BY school_name`;
 
     const schoolsRes = await db.query(query);
     return schoolsRes.rows;
@@ -99,6 +101,17 @@ class School {
 
     school.competitions = competitionsRes.rows;
 
+    Promise.all(school.competitions.map(async c => {
+      let competition = c.competition;
+      const playersRes = await db.query(
+            `SELECT username
+             FROM competitions 
+             WHERE competition = $1`,
+             [competition],
+      );
+      c.players = playersRes.rows;
+    }));
+
     const usersRes = await db.query(
             `SELECT username
              FROM users
@@ -111,6 +124,25 @@ class School {
   
     return school;
   }
+
+  /** Delete given school from database; returns undefined.
+   * 
+   * Throws NotFoundError if school not found.
+   */
+  static async remove(school_handle) {
+    const schoolRes = await db.query(
+            `DELETE
+            FROM schools
+            WHERE school_handle = $1
+            RETURNING school_handle`,
+            [school_handle],
+    );
+
+    const school = schoolRes.rows[0];
+
+    if (!school) throw new NotFoundError(`No school: ${school_handle}`);
+  }
+
 }
 
 
