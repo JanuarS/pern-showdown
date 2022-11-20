@@ -137,6 +137,60 @@ class User {
 
     return user;
   }
+
+  /** Update user data with `data`.
+   * 
+   * This is a "partial update" --- it's fine if data doesn't contain
+   * all the fields; this only changes provided data.
+   * 
+   * Returns { username, firstName, lastName, email, isAdmin, paid }
+   * 
+   * Throws NotFoundError if not found
+   * 
+   * WARNING: this function can set a new password or make a user an admin.
+   * Callers of this function must be certain they have validated inputs to this 
+   * or a serious security risks are opened.
+   */
+  static async update(username, data) {
+    if (data.password) {
+      data.password = await bcrypt.hash(data.password, BCRYPT_WORK_FACTOR);
+    }
+
+    const { setCols, values } = sqlForPartialUpdate(
+      data,
+      {
+        firstName: "first_name",
+        lastName: "last_name",
+        isAdmin: "is_admin",
+      });
+    const usernameVarIdx = "$" + (values.length + 1);
+
+    const query = `UPDATE users
+                   SET ${setCols}
+                   WHERE username = ${usernameVarIdx}
+                   RETURNING username,
+                             first_name AS "firstName",`
+  }
+
+  /** Delete given user from database; returns user.
+   * 
+   * Throws NotFoundError if user not found.
+   */
+   static async remove(username) {
+    const userRes = await db.query(
+            `DELETE
+            FROM users
+            WHERE username = $1
+            RETURNING username`,
+            [username],
+    );
+
+    const user = userRes.rows[0];
+
+    if (!user) throw new NotFoundError(`No user: ${username}`);
+
+    // return user;
+  }
 }
 
 

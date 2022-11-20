@@ -2,6 +2,7 @@
 
 const db = require("../db");
 const { BadRequestError, NotFoundError } = require("../expressError");
+const { sqlForPartialUpdate } = require("../helpers/sql");
 
 /** Related functions for schools. */
 
@@ -125,6 +126,40 @@ class School {
     return school;
   }
 
+  /** Update given school from database; returns school.
+   * 
+   * This is a "partial update" --- it's find if data doesn't contain
+   * all the fields; this only changes if select data is provided.
+   * 
+   * Returns { school }
+   * 
+   * Throws NotFound Error if school not found.
+   */
+  static async update(school_handle, data) {
+    const { setCols, values } = sqlForPartialUpdate(
+      data,
+      {});
+    const idVarIdx = "$" + (values.length + 1);
+
+    const query = `UPDATE schools
+                   SET ${setCols}
+                   WHERE school_handle = ${idVarIdx}
+                   RETURNING school_handle,
+                             school_name,
+                             city,
+                             state,
+                             logo_url AS "logoUrl",
+                             facebook_url AS "facebookUrl",
+                             instagram_url AS "instagramUrl"`;
+
+    const schoolRes = await db.query(query, [...values, school_handle]);
+    const school = schoolRes.rows[0];
+
+    if (!school) throw new NotFoundError(`No school: ${school_handle}`);
+
+    return school;
+  }
+
   /** Delete given school from database; returns undefined.
    * 
    * Throws NotFoundError if school not found.
@@ -141,8 +176,9 @@ class School {
     const school = schoolRes.rows[0];
 
     if (!school) throw new NotFoundError(`No school: ${school_handle}`);
-  }
 
+    // return school;
+  }
 }
 
 
