@@ -21,12 +21,21 @@ CREATE TABLE users (
   paid BOOLEAN NOT NULL DEFAULT FALSE
 );
 
+-- CREATE TABLE competitions (
+--   id SERIAL PRIMARY KEY,
+--   competition TEXT NOT NULL,
+--   description TEXT NOT NULL,
+--   school_handle TEXT NOT NULL 
+--     REFERENCES schools(school_handle), 
+--   username TEXT NOT NULL 
+--     REFERENCES users(username) 
+-- );
+
 CREATE TABLE competitions (
   id SERIAL PRIMARY KEY,
-  competition TEXT NOT NULL,
+  competition_handle TEXT NOT NULL,
+  competition_name TEXT NOT NULL,
   description TEXT NOT NULL,
-  school_handle TEXT NOT NULL 
-    REFERENCES schools(school_handle), 
-  username TEXT NOT NULL 
-    REFERENCES users(username) 
+  gender TEXT, 
+  logo_url TEXT 
 );
