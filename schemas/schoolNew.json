@@ -19,7 +19,7 @@
     "state": {
       "type": "string"
     },
-    "logoUrl": {
+    "logo_url": {
       "type": "string"
     },
     "facebook_url": {

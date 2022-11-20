@@ -8,9 +8,13 @@
       "minLength": 1,
       "maxLength": 30
     },
-    "logoUrl": {
+    "city": {
       "type": "string",
-      "format": "uri"
+      "minLength": 1,
+      "maxLength": 30
+    },
+    "logo_url": {
+      "type": "string"
     },
     "facebook_url": {
       "type": "string",
