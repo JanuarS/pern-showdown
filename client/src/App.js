@@ -96,7 +96,7 @@ function App() {
       <UserContext.Provider value={{ currentUser, setCurrentUser }}>
         <div className="App">
           <Navigation signup={signup} login={login} logout={logout} />
-          <Routes />
+          <Routes signup={signup} />
           <Footer />
         </div>
       </UserContext.Provider>

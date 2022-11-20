@@ -25,16 +25,6 @@ function Routes({ login, signup }) {
     }
   }
 
-  async function addUser(formData) {
-    try {
-      let res = await ShowdownApi.addUser(formData);
-      return { success: true };
-    } catch (err) {
-      console.error("add user failed", err);
-      return { success: false, err };
-    }
-  }
-
   return (
     <div className="Routes pt-5">
       <Switch>
@@ -44,7 +34,7 @@ function Routes({ login, signup }) {
         <Route exact path="/schools" element={<Schools newSchool={newSchool} />} />
         <Route exact path="/schools/:school_handle" element={<SchoolDetails />} />
         <Route exact path="/competitions" element={<Competitions />} />
-        <Route exact path="/account" element={<Account addUser={addUser} />} />
+        <Route exact path="/account" element={<Account signup={signup} />} />
         {/* <Route exact path="/:username" element={<User />} /> */}
 
         {/* server */}

@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import UserContext from "../../auth/UserContext";
 // import ShowdownApi from "../../api/api";
 
@@ -13,7 +14,8 @@ import "./Account.css";
  * Routes => Account
  */
 
-function Account({ addUser }) {
+function Account({ signup }) {
+  const history = useNavigate();
   const initialState = {
     username: "",
     password: "",
@@ -34,12 +36,12 @@ function Account({ addUser }) {
 
   async function handleSubmit(evt) {
     evt.preventDefault();
-    let res = await addUser(formData);
+    let res = await signup(formData);
     if (res.success) {
-      console.log(formData);
+      history.push("/account");
     } else {
       setFormErrors(res.errors);
-      alert(`Unable to add user, ${formData.username}`);
+      // alert(`Unable to add user, ${formData.username}`);
     }
     setFormData(initialState);
   }

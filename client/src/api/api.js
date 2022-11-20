@@ -69,12 +69,6 @@ class ShowdownApi {
     return res.school;
   }
 
-  /** Add new user */
-  static async addUser(data) {
-    let res = await this.request(`auth/signup`, data, "post");
-    return res.user;
-  }
-
 }
 
 
