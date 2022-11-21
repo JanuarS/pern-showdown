@@ -14,10 +14,11 @@ class Competition {
    * Returns [{ competition, description, gender, school_handle, username }]
    */
   static async findAll() {
-    let query = `SELECT competition, 
+    let query = `SELECT competition_handle,
+                        competition_name, 
                         description,
-                        school_handle,
-                        username
+                        gender,
+                        logo_url AS "logoUrl"
                  FROM competitions`;
     
     const competitionRes = await db.query(query);
@@ -29,20 +30,23 @@ class Competition {
    * 
    * Returns { competition, description, gender, school_handle, username }
    */
-  static async get(competition) {
+  static async get(competition_handle) {
     const competitionRes = await db.query(
-      `SELECT competition,
+      `SELECT competition_handle,
+              competition_name, 
               description,
-              school_handle,
-              username
+              gender,
+              logo_url AS "logoUrl"
        FROM competitions
-       WHERE competition = $1`, [competition]);
+       WHERE competition_handle = $1`, [competition_handle]);
     
     const competition = competitionRes.rows[0];
 
     if (!competition) throw new NotFoundError(`No competition: ${competition}`);
 
-    return competitionRes;
+    return competition;
   }
 
 }
+
+module.exports = Competition;

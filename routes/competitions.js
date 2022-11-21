@@ -9,8 +9,8 @@ const { BadRequestError } = require("../expressError");
 const { ensureAdmin } = require("../middleware/auth");
 const Competition = require("../models/competition");
 
-const competitionNewSchema = require("");
-const competitionUpdateSchema = require("");
+// const competitionNewSchema = require("");
+// const competitionUpdateSchema = require("");
 
 const router = new express.Router();
 
@@ -47,5 +47,22 @@ router.get("/", async function (req, res, next) {
     return next(err);
   }
 })
+
+/** GET /[competition_handle] => { competition }
+ * 
+ * Competition is { 
+ *  competition_handle, competition_name, description, gender, logo_url 
+ * }
+ * 
+ * Authorization required: none
+ */
+router.get("/:competition_handle", async function (req, res, next) {
+  try {
+    const competition = await Competition.get(req.params.competition_handle);
+    return res.json({ competition });
+  } catch (err) {
+    return next(err);
+  }
+});
 
 module.exports = router;

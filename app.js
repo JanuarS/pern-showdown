@@ -11,6 +11,7 @@ const { authenticateJWT } = require("./middleware/auth");
 const authRoutes = require("./routes/auth");
 const schoolsRoutes = require("./routes/schools");
 const usersRoutes = require("./routes/users");
+const competitionsRoutes = require("./routes/competitions");
 
 const morgan = require("morgan");
 
@@ -39,6 +40,7 @@ if (process.env.NODE_ENV === "production") {
 app.use("/auth", authRoutes);
 app.use("/schools", schoolsRoutes);
 app.use("/users", usersRoutes);
+app.use("/competitions", competitionsRoutes);
 // app.use("/", usersRoutes);
 
 // Send every other request to the React app
