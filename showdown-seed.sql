@@ -169,6 +169,6 @@ VALUES ('football',
          '/logos/logo2.png'),
        ('art',
         'Art', 
-        'There is no generally agreed definition of what constitutes art,[4][5][6] and its interpretation has varied greatly throughout history and across cultures. The three classical branches of visual art are painting, sculpture, and architecture.', 
+        'There is no generally agreed definition of what constitutes art, and its interpretation has varied greatly throughout history and across cultures. The three classical branches of visual art are painting, sculpture, and architecture.', 
         null, 
         '/logos/logo2.png');
