@@ -54,7 +54,7 @@ router.post("/signup", async function (req, res, next) {
       throw new BadRequestError(err);
     }
 
-    const newUser = await User.signup({ ...req.body, isAdmin: false, paid: false });
+    const newUser = await User.signup({ ...req.body, isAdmin: false, paid: false, competition: null });
     const token = createToken(newUser);
     return res.status(201).json({ token });
   } catch (err) {

@@ -69,6 +69,20 @@ class ShowdownApi {
     return res.school;
   }
 
+  /** COMPETITION ROUTES */
+
+  /** Get competitions (filtered by handle if not undefined) */
+  static async getCompetitions(handle) {
+    let res = await this.request("competitions", { handle });
+    return res.competitions;
+  }
+
+  /** Get details of a competition by competition_handle */
+  static async getCompetition(handle) {
+    let res = await this.request(`competitions/${handle}`);
+    return res.competition;
+  }
+
 }
 
 

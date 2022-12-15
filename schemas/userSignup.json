@@ -40,6 +40,11 @@
     },
     "paid": {
       "type": "boolean"
+    },
+    "competition": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 20
     }
   },
   "additionalProperties": false,

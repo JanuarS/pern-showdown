@@ -18,7 +18,8 @@ CREATE TABLE users (
     CHECK (position('@' IN email) > 1),
   school_handle TEXT NOT NULL CHECK (school_handle = lower(school_handle)),
   is_admin BOOLEAN NOT NULL DEFAULT FALSE,
-  paid BOOLEAN NOT NULL DEFAULT FALSE
+  paid BOOLEAN NOT NULL DEFAULT FALSE,
+  competition_handle TEXT DEFAULT NULL
 );
 
 -- CREATE TABLE competitions (

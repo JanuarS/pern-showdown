@@ -77,8 +77,8 @@ class School {
 
   static async get(school_handle) {
     const schoolRes = await db.query(
-            `SELECT school_handle,
-                    school_name,
+            `SELECT school_handle AS "schoolHandle",
+                    school_name AS "schoolName",
                     city,
                     state,
                     logo_url AS "logoUrl",
@@ -92,29 +92,31 @@ class School {
   
     if (!school) throw new NotFoundError(`No company: ${school_handle}`);
   
-    const competitionsRes = await db.query(
-            `SELECT competition
-             FROM competitions
-             WHERE school_handle = $1
-             ORDER BY competition`,
-             [school_handle],
-    );
+    // const competitionsRes = await db.query(
+    //         `SELECT competition_name AS "competitionName"
+    //          FROM competitions
+    //          WHERE school_handle = $1
+    //          ORDER BY competition_handle`,
+    //          [school_handle],
+    // );
 
-    school.competitions = competitionsRes.rows;
+    // school.competitions = competitionsRes.rows;
 
-    Promise.all(school.competitions.map(async c => {
-      let competition = c.competition;
-      const playersRes = await db.query(
-            `SELECT username
-             FROM competitions 
-             WHERE competition = $1`,
-             [competition],
-      );
-      c.players = playersRes.rows;
-    }));
+    // Promise.all(school.competitions.map(async c => {
+    //   let competition = c.competition;
+    //   const playersRes = await db.query(
+    //         `SELECT username
+    //          FROM competitions 
+    //          WHERE competition = $1`,
+    //          [competition],
+    //   );
+    //   c.players = playersRes.rows;
+    // }));
 
     const usersRes = await db.query(
-            `SELECT username
+            `SELECT username,
+                    first_name AS "firstName",
+                    last_name AS "lastName"
              FROM users
              WHERE school_handle = $1
              ORDER BY username`,

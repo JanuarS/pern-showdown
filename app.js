@@ -26,7 +26,7 @@ const app = express();
 //   .then(customer => console.log(customer.id))
 //   .catch(error => console.error(error));
 
-stripe.createCustomer("example@customer.com");
+// stripe.createCustomer("example@customer.com");
 app.use(cors());
 app.use(express.json());
 app.use(morgan("tiny"));

@@ -13,9 +13,9 @@ import ShowdownApi from "../../api/api";
 
 function SchoolDetails() {
   const { school_handle } = useParams();
-  console.debug("SchoolDetails", "school_handle:", school_handle);
-
   const [school, setSchool] = useState(null);
+
+  console.debug("SchoolDetails", "school_handle:", school_handle);
 
   useEffect(function getSchoolForUser() {
     async function getSchool() {
@@ -30,9 +30,16 @@ function SchoolDetails() {
       {school
         ? (
           <div>
-            <h3>{school.school_name}</h3>
+            <h3>{school.schoolName}</h3>
             <p>{school.city}</p>
-            {school.competitions.map(c => (
+            {school.users.map(u => (
+              <div>
+                <ul>
+                  <li>{u.firstName} {u.lastName}</li>
+                </ul>
+              </div>
+            ))}
+            {/* {school.competition.map(c => (
               <div>
                 <ul>
                   <li>{c.competition}</li>
@@ -43,7 +50,7 @@ function SchoolDetails() {
                   </ol>
                 ))}
               </div>
-            ))}
+            ))} */}
             <p>{console.log(school)}</p>
           </div>
         ) : ""}

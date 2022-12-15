@@ -47,7 +47,7 @@ function App() {
           let currentUser = await ShowdownApi.getCurrentUser(username);
           setCurrentUser(currentUser);
         } catch (err) {
-          console.err("App loadUserInfo: problem loading", err);
+          console.error("App loadUserInfo: problem loading", err);
           setCurrentUser(null);
         }
       }

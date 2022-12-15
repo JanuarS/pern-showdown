@@ -35,7 +35,7 @@ function Schools({ newSchool }) {
     "formErrors:", formErrors
   );
 
-  useEffect(function getCompaniesOnMount() {
+  useEffect(function getSchoolsOnMount() {
     console.debug("Schools useEffect getSchoolsOnMount");
     search();
   }, []);
