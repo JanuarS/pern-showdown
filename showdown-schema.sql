@@ -40,3 +40,12 @@ CREATE TABLE competitions (
   gender TEXT, 
   logo_url TEXT 
 );
+
+CREATE TABLE schools_competitions (
+  CONSTRAINT fk_school
+    FOREIGN KEY(school_handle)
+	    REFERENCES schools(school_handle),
+  CONSTRAINT fk_competition
+    FOREIGN KEY(competition_id)
+	    REFERENCES competitions(id)
+);
