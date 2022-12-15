@@ -14,8 +14,8 @@ class Competition {
    * Returns [{ competition, description, gender, school_handle, username }]
    */
   static async findAll() {
-    let query = `SELECT competition_handle,
-                        competition_name, 
+    let query = `SELECT competition_handle AS "competitionHandle",
+                        competition_name AS "competitionName", 
                         description,
                         gender,
                         logo_url AS "logoUrl"
@@ -32,8 +32,8 @@ class Competition {
    */
   static async get(competition_handle) {
     const competitionRes = await db.query(
-      `SELECT competition_handle,
-              competition_name, 
+      `SELECT competition_handle AS "competitionHandle",
+              competition_name AS "competitionName", 
               description,
               gender,
               logo_url AS "logoUrl"
