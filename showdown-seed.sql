@@ -1,6 +1,6 @@
 -- both test users have the password "password"
 
-INSERT INTO users (username, password, first_name, last_name, gender, email, school_handle, is_admin, paid, competition_handle)
+INSERT INTO users (username, password, first_name, last_name, gender, email, school_handle, is_admin, paid)
 VALUES ('testuser',
         '$2b$12$AZH7virni5jlTTiGgEg4zu3lSvAw68qVEfSIOjJ3RqtbJbdW/Oi5q',
         'Test',
@@ -9,8 +9,7 @@ VALUES ('testuser',
         'testuser@user.com',
         'tamu',
         FALSE,
-        FALSE,
-        NULL),
+        FALSE),
        ('testadmin',
         '$2b$12$AZH7virni5jlTTiGgEg4zu3lSvAw68qVEfSIOjJ3RqtbJbdW/Oi5q',
         'Test',
@@ -19,8 +18,7 @@ VALUES ('testuser',
         'testadmin@user.com',
         'tamu',
         TRUE,
-        TRUE,
-        NULL),
+        TRUE),
         ('paiduser',
          '$2b$12$AZH7virni5jlTTiGgEg4zu3lSvAw68qVEfSIOjJ3RqtbJbdW/Oi5q',
          'Paid',
@@ -29,8 +27,7 @@ VALUES ('testuser',
          'paiduser@user.com',
          'tamu',
          FALSE,
-         TRUE,
-         'football');
+         TRUE);
 
 INSERT INTO schools (school_handle, school_name, city, state, logo_url, facebook_url, instagram_url)
 VALUES ('rice', 

@@ -18,8 +18,7 @@ CREATE TABLE users (
     CHECK (position('@' IN email) > 1),
   school_handle TEXT NOT NULL CHECK (school_handle = lower(school_handle)),
   is_admin BOOLEAN NOT NULL DEFAULT FALSE,
-  paid BOOLEAN NOT NULL DEFAULT FALSE,
-  competition_handle TEXT DEFAULT NULL
+  paid BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 -- CREATE TABLE competitions (
@@ -42,10 +41,23 @@ CREATE TABLE competitions (
 );
 
 CREATE TABLE schools_competitions (
+  school_handle TEXT NOT NULL,
+  competition_id SERIAL NOT NULL,
+  score INT,
   CONSTRAINT fk_school
     FOREIGN KEY(school_handle)
 	    REFERENCES schools(school_handle),
-  CONSTRAINT fk_competition
+    FOREIGN KEY(competition_id)
+	    REFERENCES competitions(id)
+);
+
+CREATE TABLE users_competitions (
+  username TEXT NOT NULL,
+  competition_id INT NOT NULL,
+  score INT,
+  CONSTRAINT fk_user
+    FOREIGN KEY(username)
+	    REFERENCES users(username),
     FOREIGN KEY(competition_id)
 	    REFERENCES competitions(id)
 );
