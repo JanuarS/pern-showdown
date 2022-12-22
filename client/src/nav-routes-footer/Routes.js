@@ -9,6 +9,7 @@ import SchoolDetails from "../pages/schools/SchoolDetails";
 import Competitions from "../pages/competitions/Competitions";
 import CompetitionDetails from "../pages/competitions/CompetitionDetails";
 import Account from "../pages/account/Account";
+import Register from "../pages/register/Register";
 
 function Routes({ login, signup }) {
   console.debug(
@@ -38,6 +39,7 @@ function Routes({ login, signup }) {
         <Route exact path="/competitions/:competitionHandle" element={<CompetitionDetails />} />
         <Route exact path="/account" element={<Account signup={signup} />} />
         {/* <Route exact path="/:username" element={<User />} /> */}
+        <Route exact path="/register" element={<Register />} />
 
         {/* server */}
         <Route exact path="/404" element={<Homepage />} /> 
