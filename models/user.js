@@ -23,6 +23,7 @@ class User {
                password,
                first_name AS "firstName",
                last_name AS "lastName",
+               gender,
                email, 
                is_admin AS "isAdmin"
         FROM users
@@ -50,7 +51,7 @@ class User {
    * 
    * Throws BadRequestError on duplicates
    */
-  static async signup({ username, password, firstName, lastName, gender, email, school, isAdmin, paid, competition }) {
+  static async signup({ username, password, firstName, lastName, gender, email, school, isAdmin, paid }) {
     const duplicateCheck = await db.query(
         `SELECT username
          FROM users
@@ -74,8 +75,7 @@ class User {
           email, 
           school_handle,
           is_Admin, 
-          paid,
-          competition_handle)
+          paid)
          VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
          RETURNING username, first_name AS "firstName", last_name AS "lastName", gender, email, school_handle AS "school", competition_handle AS "competition"`,
         [
@@ -87,8 +87,7 @@ class User {
           email,
           school,
           isAdmin,
-          paid,
-          competition
+          paid
         ],
     );
 
@@ -109,8 +108,7 @@ class User {
                         gender, 
                         school_handle AS "school",
                         is_admin AS "isAdmin",
-                        paid,
-                        competition_handle AS "competition"
+                        paid
                  FROM users`;
 
     const usersRes = await db.query(query);
@@ -130,8 +128,7 @@ class User {
               gender,
               school_handle AS "school",
               is_admin AS "isAdmin",
-              paid,
-              competition_handle AS "competition"
+              paid
        FROM users
        WHERE username = $1`, [username]);
 

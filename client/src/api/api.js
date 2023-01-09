@@ -83,6 +83,12 @@ class ShowdownApi {
     return res.competition;
   }
 
+  /** Register to a competition */
+  static async registerComp() {
+    let res = await this.request(`register`);
+    return res.competition;
+  }
+
 }
 
 

@@ -43,7 +43,7 @@ function Competitions() {
           ? (
             <div>
               <div className="Competitions-list row">
-                {competitions.map(c => (
+                { competitions.map(c => (
                   <CompetitionCard 
                     key={c.competitionHandle}
                     competitionHandle={c.competitionHandle}
@@ -52,7 +52,7 @@ function Competitions() {
                     gender={c.gender}
                     logoUrl={c.logoUrl}
                   />
-                ))}
+                )) }
               </div>
             </div>
           )
