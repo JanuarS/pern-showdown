@@ -39,6 +39,12 @@ class ShowdownApi {
     return res.user;
   }
 
+  /** Update user data. */
+  static async update(username, data) {
+    let res = await this.request(`users/${username}`, data, "patch");
+    return res.user;
+  }
+
   /** Get token for login from username, password. */
   static async login(data) {
     let res = await this.request(`auth/token`, data, "post");
