@@ -48,7 +48,8 @@ CREATE TABLE schools_competitions (
     FOREIGN KEY(school_handle)
 	    REFERENCES schools(school_handle),
     FOREIGN KEY(competition_id)
-	    REFERENCES competitions(id)
+	    REFERENCES competitions(id),
+  UNIQUE (school_handle, competition_id)
 );
 
 CREATE TABLE users_competitions (
@@ -59,5 +60,6 @@ CREATE TABLE users_competitions (
     FOREIGN KEY(username)
 	    REFERENCES users(username),
     FOREIGN KEY(competition_id)
-	    REFERENCES competitions(id)
+	    REFERENCES competitions(id),
+  UNIQUE (username, competition_id)
 );
